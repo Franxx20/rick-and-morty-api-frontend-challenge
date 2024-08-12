@@ -10,6 +10,8 @@ import NotFoundPage from "./pages/NotFoundPage.tsx";
 import {CharacterDetailsPage} from "./pages/CharacterDetailsPage.tsx";
 import {EpisodeDetailsPage} from "./pages/EpisodeDetailsPage.tsx";
 import {LocationDetailsPage} from "./pages/LocationDetailsPage.tsx";
+import {SearchResultsPage} from "./pages/SearchResultsPage.tsx";
+import FilterMenuTestPage from "./pages/FilterMenuTestPage.tsx";
 
 const router = createBrowserRouter([
     {
@@ -47,11 +49,19 @@ const router = createBrowserRouter([
         element: <LocationDetailsPage/>,
         errorElement:<NotFoundPage/>
     },
+    {
+        path:'/search-results',
+        element:<SearchResultsPage/>
+    },
+    {
+        path:'/filter-menu',
+        element:<FilterMenuTestPage/>
+
+    }
 ])
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        {/*<App/>*/}
         <RouterProvider router={router}/>
     </StrictMode>,
 )

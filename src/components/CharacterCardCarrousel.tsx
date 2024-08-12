@@ -1,8 +1,8 @@
 import Slider from "react-slick";
 import {CARROUSEL_SETTINGS} from "../utils/Constants.ts";
-import type {Character} from "../utils/types.ts";
 import React from "react";
 import CharacterCard from "./CharacterCard.tsx";
+import type {Character} from "../utils/types.ts";
 
 
 type CarrouselProp = {

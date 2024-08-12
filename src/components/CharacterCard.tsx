@@ -1,6 +1,6 @@
-import type {Character} from "../utils/types.ts";
 import React from "react";
-import {Link} from "react-router-dom"; // Adjust the import path if needed
+import {Link} from "react-router-dom";
+import type {Character} from "../utils/types.ts"; // Adjust the import path if needed
 
 type CharacterCardProp = {
     character: Character;
@@ -10,7 +10,7 @@ const CharacterCard: React.FC<CharacterCardProp> = ({character}) => {
     return (
         <div className="bg-amber-400 text-black rounded-xl">
             <div className="h-56 rounded-t-xl bg-indigo-500 flex justify-center items-center">
-                <img src={character.image} alt={character.name} className="h-44 w-44 rounded" />
+                <img src={character.image} alt={character.name} className="h-44 w-44 rounded"/>
             </div>
 
             <div className='flex flex-col justify-center items-center gap-4 p-4'>

@@ -1,6 +1,6 @@
 import type {Location} from "../utils/types.ts";
-import React from "react";
-import {Link} from "react-router-dom"; // Adjust the import path if needed
+import {Link} from "react-router-dom";
+import React from "react"; // Adjust the import path if needed
 
 type LocationCardProp = {
     Location: Location;
@@ -10,7 +10,7 @@ const LocationCard: React.FC<LocationCardProp> = ({Location}) => {
     return (
         <div className="bg-amber-400 text-black rounded-xl">
             <div className="h-56 rounded-t-xl bg-indigo-500 flex justify-center items-center">
-                <img src={"src/assets/Rick-And-Morty-Portal.jpeg"} alt={Location.name} className="h-44 w-44 rounded" />
+                <img src={"src/assets/Rick-And-Morty-Portal.jpeg"} alt={Location.name} className="h-44 w-44 rounded"/>
             </div>
 
             <div className='flex flex-col justify-center items-center gap-4 p-4'>

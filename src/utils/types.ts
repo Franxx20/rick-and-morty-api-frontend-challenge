@@ -15,7 +15,7 @@ export type Info<T> = {
         next?: string,
         prev?: string,
     },
-    results?: T,
+    results?: T[],
 }
 
 export type BaseData = {
@@ -81,5 +81,7 @@ export type EpisodeFilter = {
     name?: string,
     episode?: string,
 };
+// export type SearchByIdType = Episode[] | Location[] | Episode[];
+
 
 export type Page = number;
