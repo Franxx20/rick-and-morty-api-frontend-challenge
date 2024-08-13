@@ -11,53 +11,47 @@ import {CharacterDetailsPage} from "./pages/CharacterDetailsPage.tsx";
 import {EpisodeDetailsPage} from "./pages/EpisodeDetailsPage.tsx";
 import {LocationDetailsPage} from "./pages/LocationDetailsPage.tsx";
 import {SearchResultsPage} from "./pages/SearchResultsPage.tsx";
-import FilterMenuTestPage from "./pages/FilterMenuTestPage.tsx";
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <App/>,
-        errorElement:<NotFoundPage/>
+        errorElement: <NotFoundPage/>
     },
     {
         path: "/characters",
         element: <CharactersPage/>,
-        errorElement:<NotFoundPage/>
+        errorElement: <NotFoundPage/>
     },
     {
         path: "/character/:id",
         element: <CharacterDetailsPage/>,
-        errorElement:<NotFoundPage/>
+        errorElement: <NotFoundPage/>
     },
     {
         path: "/episodes",
         element: <EpisodesPage/>,
-        errorElement:<NotFoundPage/>
+        errorElement: <NotFoundPage/>
     },
     {
         path: "/episode/:id",
         element: <EpisodeDetailsPage/>,
-        errorElement:<NotFoundPage/>
+        errorElement: <NotFoundPage/>
     },
     {
         path: "/locations",
         element: <LocationsPage/>,
-        errorElement:<NotFoundPage/>
+        errorElement: <NotFoundPage/>
     },
     {
         path: "/location/:id",
         element: <LocationDetailsPage/>,
-        errorElement:<NotFoundPage/>
+        errorElement: <NotFoundPage/>
     },
     {
-        path:'/search-results',
-        element:<SearchResultsPage/>
+        path: '/search-results',
+        element: <SearchResultsPage/>
     },
-    {
-        path:'/filter-menu',
-        element:<FilterMenuTestPage/>
-
-    }
 ])
 
 createRoot(document.getElementById('root')!).render(
