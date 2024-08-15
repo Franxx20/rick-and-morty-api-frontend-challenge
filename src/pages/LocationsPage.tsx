@@ -1,7 +1,7 @@
 import {Title} from "../components/title.tsx";
 import {useEffect, useState} from "react";
-import type {Location} from "../utils/types.ts";
-import {getLocations} from "../utils/api.ts";
+import type {Location, LocationFilter} from "../utils/types.ts";
+import {getData} from "../utils/api.ts";
 import LocationCard from "../components/LocationCard.tsx";
 import {NavBar} from "../components/NavBar.tsx";
 
@@ -9,8 +9,9 @@ export function LocationsPage() {
     const [locations, setLocations] = useState<Location[]>([]);
 
     async function getLocationsHelper() {
-        const result: Location[] = await getLocations()
-        setLocations(result);
+        // const result: Location[] = await getLocations()
+        const result = await getData<Location, LocationFilter>('location')
+        setLocations(result.results as Location[]);
     }
 
     useEffect(() => {

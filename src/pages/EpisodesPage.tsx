@@ -1,7 +1,7 @@
 import {Title} from "../components/title.tsx";
 import {useEffect, useState} from "react";
-import type {Episode} from "../utils/types.ts";
-import {getEpisodes} from "../utils/api.ts";
+import type {Episode, EpisodeFilter} from "../utils/types.ts";
+import {getData} from "../utils/api.ts";
 import EpisodeCard from "../components/EpisodeCard.tsx";
 import CharacterFilterMenu from "../components/CharacterFilterMenu.tsx";
 import {NavBar} from "../components/NavBar.tsx";
@@ -10,8 +10,8 @@ export function EpisodesPage() {
     const [episodes, setEpisodes] = useState<Episode[]>([]);
 
     async function getEpisodesHelper() {
-        const result: Episode[] = await getEpisodes()
-        setEpisodes(result);
+        const result = await getData<Episode, EpisodeFilter>("episode")
+        setEpisodes(result.results as Episode[]);
     }
 
     useEffect(() => {

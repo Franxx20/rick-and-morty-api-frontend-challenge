@@ -1,6 +1,7 @@
 import {Link} from "react-router-dom";
 import {SearchBar} from "./SearchBar.tsx";
 
+
 export function NavBar() {
     return (
         <nav className="navbar bg-white">

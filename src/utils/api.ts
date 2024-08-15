@@ -1,6 +1,16 @@
 import axios from "axios";
 import {BASE_URL} from "./Constants.ts";
-import type {Character, CharacterFilter, Episode, EpisodeFilter, Location, LocationFilter, Page} from "./types.ts";
+import type {
+    Character,
+    CharacterFilter,
+    EndpointType,
+    Episode,
+    EpisodeFilter,
+    Info,
+    Location,
+    LocationFilter,
+    Page
+} from "./types.ts";
 
 // Helper function to construct query parameters
 const buildQueryParams = (params: Record<string, string | string[] | number | undefined>): string => {
@@ -33,21 +43,28 @@ export const getEpisodes = async (filter?: EpisodeFilter, page?: Page): Promise<
 }
 
 export const getCharacters = async (filter?: CharacterFilter, page?: Page): Promise<Character[]> => {
-    const query = BASE_URL + "/character/"
-    const queryParams = buildQueryParams({
-        name: filter?.name,
-        status: filter?.status,
-        species: filter?.species,
-        type: filter?.type,
-        gender: filter?.gender,
-        page: page
-    })
-
+    const url = BASE_URL + "/character/"
+    // const queryParams = buildQueryParams({
+    //     name: filter?.name,
+    //     status: filter?.status,
+    //     species: filter?.species,
+    //     type: filter?.type,
+    //     gender: filter?.gender,
+    //     page: page
+    // })
     try {
-        const response = await axios.get(query + queryParams);
+        // const response = await axios.get(url + queryParams);
+        const response = await axios({
+            method: 'GET',
+            url: url,
+            params: {
+                ...filter,
+                page
+            }
+        })
 
         const characters: Character[] = response.data.results
-        console.log(characters)
+        console.log(`response ${response.data}`)
 
         return characters
     } catch (e) {
@@ -55,6 +72,7 @@ export const getCharacters = async (filter?: CharacterFilter, page?: Page): Prom
         throw e
     }
 }
+
 
 export const getLocations = async (filter?: LocationFilter, page?: Page): Promise<Location[]> => {
     const query = BASE_URL + "/location/"
@@ -184,7 +202,6 @@ export const getEpisodeByID = async (id: number): Promise<Episode> => {
 export const getEpisodesByID = async (ids: number[]): Promise<Episode[]> => {
     const query = `${BASE_URL}/episode/${ids.join(',')}`;
 
-
     try {
         const response = await axios.get(query);
         const result: Episode[] = response.data;
@@ -202,4 +219,27 @@ export const getEpisodesByID = async (ids: number[]): Promise<Episode[]> => {
         throw e;
     }
 };
+
+export async function getData<T, F>(
+    endpoint: EndpointType,
+    filter?: F,
+    page?: Page,
+): Promise<Info<T>> {
+    const url = `${BASE_URL}/${endpoint}`;
+    try {
+        const response = await axios({
+            method: 'GET',
+            url: url,
+            params: {
+                ...filter,
+                page,
+            }
+        })
+        return response.data;
+    } catch (e) {
+        console.error(e)
+        throw e
+    }
+
+}
 
