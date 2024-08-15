@@ -1,30 +1,46 @@
 import React, {useState} from "react";
+
 import {useNavigate} from "react-router-dom";
 
-export type SearchProps = {
-    onSearch: (value: string) => void;
-}
 
-export function SearchBar({onSearch}: SearchProps) {
+export function SearchBar() {
     const [searchValue, setSearchValue] = useState('');
+    const [isFocused, setIsFocused] = useState<boolean>(false);
     const navigate = useNavigate()
 
 
     function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
         if (event.key === 'Enter') {
-            onSearch(searchValue);
+            // onSearch(searchValue);
             navigate(`/search-results?query=${searchValue}`);
         }
     }
 
 
+    function handleFocus() {
+        setIsFocused(true)
+    }
+
+    function handleBlur() {
+        setIsFocused(false)
+    }
+
     return (
-        <div className='relative w-full text-gray-600'>
-            <input value={searchValue} type={"search"} name={"search"} placeholder={'Search...'}
-                   className='bg-amber-200 h-10 px-5 pr-10 w-full rounded-full text-sm focus:outline-none'
-                   onChange={(e) => setSearchValue(e.target.value)}
-                   onKeyDown={handleKeyDown}
-            />
+        <div
+            className={`flex flex-grow relative w-full text-gray-600 ${isFocused ? 'lg:max-w-[40rem]' : 'lg:max-w-[20rem]'}`}>
+            <div className=' flex flex-grow relative w-full text-gray-600'>
+                <input
+                    className={`bg-amber-200 h-10 px-5 rounded-full text-sm focus:outline-none transition-all duration-300 ${isFocused ? 'lg:w-full' : 'lg:w-64'}`}
+                    value={searchValue}
+                    type={"search"}
+                    name={"search"}
+                    placeholder={'Search...'}
+                    onChange={(e) => setSearchValue(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                />
+            </div>
         </div>
     )
 

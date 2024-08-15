@@ -1,4 +1,6 @@
 // allows the interception of custom types to show all the types members
+import React from "react";
+
 type Prettify<T> = {
     [K in keyof T]: T[K];
 } & {};
@@ -81,7 +83,15 @@ export type EpisodeFilter = {
     name?: string,
     episode?: string,
 };
-// export type SearchByIdType = Episode[] | Location[] | Episode[];
+
+
+// export type CarrouselGenProp = CharacterCarrouselProp | LocationCarrouselProp | EpisodeCarrouselProp
+export type CardCarrouselProp<T> = {
+    data: T[],
+    CardComponent: React.FC<{ data: T }>;
+    title: string,
+    endpoint: string,
+}
 
 
 export type Page = number;

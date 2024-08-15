@@ -2,7 +2,6 @@ export const BASE_URL = 'https://rickandmortyapi.com/api'
 
 export const CARROUSEL_SETTINGS = {
     accessibility: true,
-    dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
@@ -14,7 +13,6 @@ export const CARROUSEL_SETTINGS = {
                 slidesToShow: 3,
                 slidesToScroll: 3,
                 infinite: true,
-                dots: true
             }
         },
         {

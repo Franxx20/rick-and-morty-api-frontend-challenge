@@ -1,12 +1,10 @@
-import CharacterCardCarrousel from './CharacterCardCarrousel'; // Adjust the import path as needed
-import LocationCardCarrousel from './LocationCardCarrousel';
-import EpisodeCardCarrousel from './EpisodeCardCarrousel';
-import CharacterCard from "./CharacterCard.tsx";
 import EpisodeCard from "./EpisodeCard.tsx";
 import type {Character, Episode, Location} from "../utils/types.ts";
 import LocationCard from "./LocationCard.tsx";
+import {CardCarrousel} from "./CardCarrousel.tsx";
+import characterCard from "./CharacterCard.tsx";
 
-interface DataCarrouselsProps {
+type DataCarrouselsProps = {
     characters: Character[]; // Adjust 'any' to your actual character data type
     locations: Location[];  // Adjust 'any' to your actual location data type
     episodes: Episode[];   // Adjust 'any' to your actual episode data type
@@ -16,13 +14,16 @@ function DataCarrousels({characters, locations, episodes}: DataCarrouselsProps) 
     return (
         <div>
             {characters?.length > 0 && (
-                <CharacterCardCarrousel data={characters} CardComponent={CharacterCard}/>
+                <CardCarrousel CardComponent={characterCard} data={characters} endpoint={'characters'}
+                               title={'Characters'}></CardCarrousel>
             )}
             {locations?.length > 0 && (
-                <LocationCardCarrousel data={locations} CardComponent={LocationCard}/>)
-            }
+                <CardCarrousel CardComponent={LocationCard} data={locations} endpoint={'locations'}
+                               title={'Locations'}></CardCarrousel>
+            )}
             {episodes?.length > 0 && (
-                <EpisodeCardCarrousel data={episodes} CardComponent={EpisodeCard}/>
+                <CardCarrousel CardComponent={EpisodeCard} data={episodes} endpoint={'episodes'}
+                                                            title={'Episodes'}></CardCarrousel>
             )}
         </div>
     );

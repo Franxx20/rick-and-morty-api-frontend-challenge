@@ -7,7 +7,7 @@ import {getCharacters, getEpisodes, getLocations} from "./utils/api.ts";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import DataCarrousel from "./components/DataCarrousel.tsx";
-import {SearchBar} from "./components/SearchBar.tsx";
+import {NavBar} from "./components/NavBar.tsx";
 
 const queryClient = new QueryClient()
 
@@ -16,7 +16,7 @@ function App() {
     const [characters, setCharacters] = useState<Character[]>([]); // Adjust 'any' to your data type
     const [locations, setLocations] = useState<Location[]>([]); // Adjust 'any' to your data type
     const [episodes, setEpisodes] = useState<Episode[]>([]); // Adjust 'any' to your data type
-    const [_, setSearchValue] = useState("")
+
 
     async function getCharactersHelper() {
         const result: Character[] = await getCharacters()
@@ -40,13 +40,11 @@ function App() {
     }, [])
 
 
-    const onSearchBarSearch = (value: string) => {
-        setSearchValue(value)
-    };
-
     return (
         <QueryClientProvider client={queryClient}>
-            <SearchBar onSearch={onSearchBarSearch}></SearchBar>
+            <div className={'sticky top-0 z-50'}>
+                <NavBar></NavBar>
+            </div>
             <Title title={"Rick and Morty API"}></Title>
             <DataCarrousel characters={characters} locations={locations} episodes={episodes}></DataCarrousel>
         </QueryClientProvider>
