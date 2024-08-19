@@ -8,7 +8,7 @@ type LocationCardProp = {
 
 const LocationCard: React.FC<LocationCardProp> = ({data}) => {
     return (
-        <div className="bg-amber-400 text-black rounded-xl">
+        <div className="bg-amber-400 text-black rounded-xl ">
             <div className="h-56 rounded-t-xl bg-indigo-500 flex justify-center items-center">
                 <img src={"src/assets/Rick-And-Morty-Portal.jpeg"} alt={data.name} className="h-44 w-44 rounded"/>
             </div>

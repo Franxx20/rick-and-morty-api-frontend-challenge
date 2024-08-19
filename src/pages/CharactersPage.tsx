@@ -35,7 +35,6 @@ export function CharactersPage() {
                 setIsLoading(false);
             }
         };
-
         if (hasMore) {
             fetchCharacters();
         }
