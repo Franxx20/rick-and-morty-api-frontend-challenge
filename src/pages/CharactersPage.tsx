@@ -7,6 +7,7 @@ import CharacterFilterMenu from "../components/CharacterFilterMenu.tsx";
 import NotFoundPage from "./NotFoundPage.tsx";
 import {NavBar} from "../components/NavBar.tsx";
 import Modal from 'react-modal';
+import {CardPlaceholder} from "../components/CardPlaceholder.tsx";
 
 export function CharactersPage() {
     const [characters, setCharacters] = useState<Character[]>([]);
@@ -21,20 +22,34 @@ export function CharactersPage() {
         setShowFilterMenu(!showFilterMenu);
     };
 
+    const fetchCharacters = async () => {
+        setIsLoading(true);
+        try {
+            const result: Info<Character> = await getData<Character, CharacterFilter>('character', filters, page);
+            setCharacters((previous) => {
+                    const auxMap: Map<number, Character> = new Map();
+                    for (const character of previous) {
+                        auxMap.set(character.id, character)
+                    }
+
+                    if (result.results)
+                        for (const character of result.results as Character[]) {
+                            if (!auxMap.has(character.id))
+                                auxMap.set(character.id, character)
+                        }
+                    return Array.from(auxMap.values()).sort((a, b) => a.id - b.id)
+                }
+            );
+            setHasMore(result.info?.next !== null);
+        } catch (err) {
+            console.error(err);
+            setError('Failed to fetch characters');
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     useEffect(() => {
-        const fetchCharacters = async () => {
-            setIsLoading(true);
-            try {
-                const result: Info<Character> = await getData<Character, CharacterFilter>('character', filters, page);
-                setCharacters((previous) => [...new Set([...previous, ...result.results as Character[]])]);
-                setHasMore(result.info?.next !== null);  // Update hasMore based on API response
-            } catch (err) {
-                console.error(err);
-                setError('Failed to fetch characters');
-            } finally {
-                setIsLoading(false);
-            }
-        };
         if (hasMore) {
             fetchCharacters();
         }
@@ -73,28 +88,32 @@ export function CharactersPage() {
                 src={'src/assets/filter-32.svg'}
                 alt={'../assets/filter-icon.jpg'}
                 onClick={toggleFilterMenu}
-                className={'h-10 cursor-pointer'}
-            />
+                className={'h-10 cursor-pointer'}/>
 
             <Modal
                 isOpen={showFilterMenu}
                 onRequestClose={toggleFilterMenu}
                 contentLabel="Character Filter Menu"
                 className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-lg shadow-md p-4 max-w-full w-auto sm:w-3/4 lg:w-1/2 max-h-full z-50"
-                overlayClassName="fixed inset-0 bg-black bg-opacity-50 z-40"
-            >
+                overlayClassName="fixed inset-0 bg-black bg-opacity-50 z-40">
                 <CharacterFilterMenu onFilterChange={onFilterChange}/>
             </Modal>
 
-            <div className="columns-1 sm:columns-2 lg:columns-3 py-10 md:py-20 gap-4">
-                {characters.map((character) => (
-                    <div key={character.id} className="mb-4 break-inside-avoid">
-                        <CharacterCard data={character}/>
-                    </div>
-                ))}
-            </div>
-
-            {isLoading && <div className="text-center py-4">Loading...</div>}
+            {isLoading ?
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 py-10 md:py-20 gap-4">
+                    {characters.map((character) => (
+                        <div key={character.id} className="mb-4 break-inside-avoid">
+                            <CardPlaceholder/>
+                        </div>
+                    ))}
+                </div>
+                : <div className="columns-1 sm:columns-2 lg:columns-3 py-10 md:py-20 gap-4">
+                    {characters.map((character) => (
+                        <div key={character.id} className="mb-4 break-inside-avoid">
+                            <CharacterCard data={character}/>
+                        </div>
+                    ))}
+                </div>}
         </div>
     );
 }
