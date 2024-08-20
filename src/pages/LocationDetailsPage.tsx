@@ -1,5 +1,6 @@
 import {useLocation} from "react-router-dom";
 import type {Location} from '../utils/types.ts';
+import {Title} from "../components/title.tsx";
 
 export function LocationDetailsPage() {
     const locationObject = useLocation()
@@ -8,7 +9,7 @@ export function LocationDetailsPage() {
     return (
         <div className="container mx-auto p-6">
             <div className="bg-white shadow-lg rounded-lg p-6">
-                <h1 className="text-2xl font-bold text-center mb-4">Location Details</h1>
+                <Title title={'Location Details'}></Title>
                 <div className="space-y-4 text-lg">
                     <div><span className="font-semibold">ID:</span> {location?.id}</div>
                     <div><span className="font-semibold">Name:</span> {location?.name}</div>
