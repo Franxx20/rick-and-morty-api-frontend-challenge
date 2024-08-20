@@ -33,14 +33,14 @@ export function LocationDetailsPage() {
                     <div><span className="font-semibold">ID:</span> {location?.id}</div>
                     <div><span className="font-semibold">Name:</span> {location?.name}</div>
                     <div><span
-                        className="font-semibold">Created:</span> {new Date(location?.created).toLocaleDateString()}
+                        className="font-semibold">Created:</span> {location?.created}
                     </div>
                     <div><span className="font-semibold">Dimension:</span> {location?.dimension || 'Unknown'}</div>
                 </div>
 
                 <h2 className="text-xl font-semibold mt-4">Residents:</h2>
                 <div className="columns-1 sm:columns-2 lg:columns-3 md:py-20 gap-4">
-                    {characters.map((character) => (
+                    {characters?.map((character) => (
                         <div key={character.id} className="mb-4 break-inside-avoid">
                             <CharacterCard data={character}/>
                         </div>

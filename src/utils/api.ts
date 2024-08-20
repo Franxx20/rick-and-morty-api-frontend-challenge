@@ -117,6 +117,8 @@ export const getCharacterByID = async (id: number): Promise<Character> => {
 };
 
 export const getCharactersByID = async (ids: number[]): Promise<Character[]> => {
+    if (!ids.length)
+        return []
     const query = `${BASE_URL}/character/${ids.join(',')}`;
     try {
         const response = await axios.get(query);
