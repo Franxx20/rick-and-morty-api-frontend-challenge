@@ -19,7 +19,7 @@ const EpisodeCard: React.FC<EpisodeCardProp> = ({data}) => {
                 </p>
                 <p>{data.air_date}</p>
                 <button className="bg-indigo-500 text-white text-lg px-6 py-1 rounded-xl">
-                    <Link key={data.id} to={`/episode/${data.id}`}>View More</Link>
+                    <Link key={data.id} to={`/episode/${data.id}`} state={data}>View More</Link>
                 </button>
             </div>
         </div>

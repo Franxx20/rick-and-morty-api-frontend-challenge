@@ -5,7 +5,6 @@ import {getData} from "../utils/api.ts";
 import EpisodeCard from "../components/EpisodeCard.tsx";
 import {NavBar} from "../components/NavBar.tsx";
 import NotFoundPage from "./NotFoundPage.tsx";
-import {CardPlaceholder} from "../components/CardPlaceholder.tsx";
 
 export function EpisodesPage() {
     const [episodes, setEpisodes] = useState<Episode[]>([]);

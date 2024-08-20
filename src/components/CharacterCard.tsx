@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import type {Character} from "../utils/types.ts"; // Adjust the import path if needed
+import type {Character} from "../utils/types.ts";
 
 type CharacterCardProp = {
     data: Character;
@@ -20,7 +20,7 @@ const CharacterCard: React.FC<CharacterCardProp> = ({data}) => {
 
                 <p>{data.status}</p>
                 <button className="bg-indigo-500 text-white text-lg px-6 py-1 rounded-xl">
-                    <Link key={data.id} to={`/character/${data.id}`}>View More</Link>
+                    <Link key={data.id} to={`/character/${data.id}`} state={data}>View More</Link>
                 </button>
             </div>
         </div>

@@ -18,7 +18,7 @@ const LocationCard: React.FC<LocationCardProp> = ({data}) => {
                    style={{fontSize: 'calc(1.25rem - 0.1vw)'}}>
                     {data.name}</p>
                 <button className="bg-indigo-500 text-white text-lg px-6 py-1 rounded-xl">
-                    <Link key={data.id} to={`/location/${data.id}`}>View More</Link>
+                    <Link key={data.id} to={`/location/${data.id}`} state={data}>View More</Link>
                 </button>
             </div>
         </div>
