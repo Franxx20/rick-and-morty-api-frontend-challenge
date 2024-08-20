@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import {getCharacters, getEpisodes, getLocations} from "../utils/api.ts";
 import type {Character, Episode, Location} from "../utils/types.ts";
 import DataCarrousel from "../components/DataCarrousel.tsx";
+import {NavBar} from "../components/NavBar.tsx";
 
 export function SearchResultsPage() {
     const [searchParams] = useSearchParams()
@@ -28,6 +29,9 @@ export function SearchResultsPage() {
 
     return (
         <div>
+            <div className="sticky top-0 z-50">
+                <NavBar/>
+            </div>
             <Title title={"Search Results"}/>
             <DataCarrousel characters={characters} locations={locations} episodes={episodes}/>
         </div>

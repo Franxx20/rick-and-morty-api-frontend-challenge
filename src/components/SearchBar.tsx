@@ -1,47 +1,42 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { HiSearch } from 'react-icons/hi';  // Importing an icon from react-icons
 
-import {useNavigate} from "react-router-dom";
-
-
-export function SearchBar() {
+export function SearchBar({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) {
     const [searchValue, setSearchValue] = useState('');
-    const [isFocused, setIsFocused] = useState<boolean>(false);
-    const navigate = useNavigate()
-
+    const navigate = useNavigate();
 
     function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
         if (event.key === 'Enter') {
-            // onSearch(searchValue);
             navigate(`/search-results?query=${searchValue}`);
+            onClose(); // Close modal on search
         }
     }
 
-
-    function handleFocus() {
-        setIsFocused(true)
-    }
-
-    function handleBlur() {
-        setIsFocused(false)
-    }
+    if (!isOpen) return null;
 
     return (
-        <div
-            className={`flex flex-grow relative w-full text-gray-600 ${isFocused ? 'lg:max-w-[40rem]' : 'lg:max-w-[20rem]'}`}>
-            <div className=' flex flex-grow relative w-full text-gray-600'>
-                <input
-                    className={`bg-amber-200 h-10 px-5 rounded-full text-sm focus:outline-none transition-all duration-300 ${isFocused ? 'lg:w-full' : 'lg:w-64'}`}
-                    value={searchValue}
-                    type={"search"}
-                    name={"search"}
-                    placeholder={'Search...'}
-                    onChange={(e) => setSearchValue(e.target.value)}
-                    onKeyDown={handleKeyDown}
-                    onFocus={handleFocus}
-                    onBlur={handleBlur}
-                />
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+            <div className="bg-white rounded-lg p-8 w-full max-w-md">
+                <div className="relative flex items-center">
+                    <HiSearch className="absolute left-3 text-gray-400 text-lg" />  {/* Icon positioned on the left */}
+                    <input
+                        className="bg-gray-100 w-full h-10 pl-10 pr-5 rounded-full text-sm focus:outline-none"
+                        value={searchValue}
+                        type="search"
+                        name="search"
+                        placeholder="Search..."
+                        onChange={(e) => setSearchValue(e.target.value)}
+                        onKeyDown={handleKeyDown}
+                    />
+                </div>
+                <button
+                    className="mt-4 px-4 py-2 bg-indigo-500 text-white rounded"
+                    onClick={onClose}
+                >
+                    Close
+                </button>
             </div>
         </div>
-    )
-
+    );
 }
