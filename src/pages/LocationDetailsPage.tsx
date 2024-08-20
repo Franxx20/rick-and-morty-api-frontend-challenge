@@ -2,8 +2,9 @@ import {useLocation} from "react-router-dom";
 import type {Character, Location} from '../utils/types.ts';
 import {Title} from "../components/title.tsx";
 import {NavBar} from "../components/NavBar.tsx";
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import {getCharactersByID} from "../utils/api.ts";
+import NotFoundPage from "./NotFoundPage.tsx";
 import CharacterCard from "../components/CharacterCard.tsx";
 
 export function LocationDetailsPage() {
@@ -11,16 +12,34 @@ export function LocationDetailsPage() {
     const location: Location = locationObject.state || {}
     const characterIds: number[] = location.residents.map((character) => Number(character.split('/').pop()))
     const [characters, setCharacters] = useState<Character[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    const fetchCharacters = useCallback(async () => {
+        setIsLoading(true)
+        try {
+            const result: Character[] = await getCharactersByID(characterIds) as Character[]
+            setCharacters(result)
+            console.log(result.length)
+        } catch (e) {
+            setError('Failed to fetch Characters')
+            throw e
+        } finally {
+            setIsLoading(false)
+        }
+    }, [])
 
     useEffect(() => {
+        fetchCharacters().catch(console.error)
+    }, [fetchCharacters]);
 
-        const fetchCharacters = async () => {
-            const result = await getCharactersByID(characterIds)
-            setCharacters(result)
-        }
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
 
-        fetchCharacters()
-    }, []);
+    if (error) {
+        return <NotFoundPage/>;
+    }
 
     return (
         <div className="container mx-auto">
@@ -39,23 +58,16 @@ export function LocationDetailsPage() {
                 </div>
 
                 <h2 className="text-xl font-semibold mt-4">Residents:</h2>
+
                 <div className="columns-1 sm:columns-2 lg:columns-3 md:py-20 gap-4">
-                    {characters?.map((character) => (
-                        <div key={character.id} className="mb-4 break-inside-avoid">
-                            <CharacterCard data={character}/>
-                        </div>
-                    ))}
+                    {characters && characters.length > 0 &&
+                        characters.map((character) => (
+                            <div key={character.id} className="mb-4 break-inside-avoid">
+                                <CharacterCard data={character}/>
+                            </div>
+                        ))
+                    }
                 </div>
-                {/*<div className="mt-6">*/}
-                {/*    <h2 className="text-xl font-semibold mb-2">Residents:</h2>*/}
-                {/*    <ul className="list-disc list-inside space-y-1">*/}
-                {/*        {location?.residents.map((character, index) => (*/}
-                {/*            <li key={index} className="text-blue-500 hover:underline">*/}
-                {/*                {character}*/}
-                {/*            </li>*/}
-                {/*        ))}*/}
-                {/*    </ul>*/}
-                {/*</div>*/}
             </div>
         </div>
     );

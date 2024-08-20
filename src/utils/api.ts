@@ -44,16 +44,7 @@ export const getEpisodes = async (filter?: EpisodeFilter, page?: Page): Promise<
 
 export const getCharacters = async (filter?: CharacterFilter, page?: Page): Promise<Character[]> => {
     const url = BASE_URL + "/character/"
-    // const queryParams = buildQueryParams({
-    //     name: filter?.name,
-    //     status: filter?.status,
-    //     species: filter?.species,
-    //     type: filter?.type,
-    //     gender: filter?.gender,
-    //     page: page
-    // })
     try {
-        // const response = await axios.get(url + queryParams);
         const response = await axios({
             method: 'GET',
             url: url,
@@ -118,20 +109,16 @@ export const getCharacterByID = async (id: number): Promise<Character> => {
 
 export const getCharactersByID = async (ids: number[]): Promise<Character[]> => {
     if (!ids.length)
-        return []
+        throw new Error('no ids fetch')
     const query = `${BASE_URL}/character/${ids.join(',')}`;
     try {
         const response = await axios.get(query);
-        const result: Character[] = response.data;
-
-        console.log(result);
-
-        // Ensure the response data structure is what you expect.
-        if (result) {
-            return result;
-        } else {
-            throw new Error('Unexpected response format');
+        console.log(response);
+        if(ids.length === 1){
+            const character = response.data
+            return [character]
         }
+        return response.data
     } catch (e) {
         console.error('Error in getCharacterByID:', e);
         throw e;
