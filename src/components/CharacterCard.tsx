@@ -11,9 +11,8 @@ const CharacterCard: React.FC<CharacterCardProp> = ({data}) => {
         <Link
             key={data.id}
             to={`/character/${data.id}`}
-            state={data}
-            className="relative block h-64 w-64 rounded-xl overflow-hidden transition duration-300 hover:scale-110"
-        >
+            state={data.id}
+            className="relative block max-h-56 max-w-56 rounded-xl overflow-hidden transition duration-300 hover:scale-110">
             <img
                 src={data.image}
                 alt={data.name}
@@ -21,9 +20,7 @@ const CharacterCard: React.FC<CharacterCardProp> = ({data}) => {
             />
             <div
                 className="absolute bottom-7 w-full bg-black/70 p-2 rounded-full flex items-center justify-center">
-                <p
-                    className="text-lg font-semibold text-white text-center leading-tight px-4"
-                    style={{whiteSpace: 'normal', wordWrap: 'break-word', maxWidth: '100%'}}>
+                <p className="text-lg font-semibold text-white text-center truncate">
                     {data.name}
                 </p>
             </div>

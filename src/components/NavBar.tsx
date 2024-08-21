@@ -17,7 +17,8 @@ export function NavBar() {
                 </li>
 
                 <li className="hidden sm:flex space-x-4 h-full">
-                    <Link className="h-full p-4 flex items-center text-black hover:bg-gray-400 hover:rounded-xl" to="/">Home</Link>
+                    <Link className="h-full p-4 flex items-center text-black hover:bg-gray-400 hover:rounded-xl"
+                          to="/">Home</Link>
                     <Link className="h-full p-4 flex items-center text-black hover:bg-gray-400 hover:rounded-xl"
                           to="/characters">Characters</Link>
                     <Link className="h-full p-4 flex items-center text-black hover:bg-gray-400 hover:rounded-xl"

@@ -126,6 +126,7 @@ export const getCharactersByID = async (ids: number[]): Promise<Character[]> => 
 };
 
 export const getLocationByID = async (id: number): Promise<Location> => {
+    console.log(id)
     const query = `${BASE_URL}/location/${id}`;
 
     try {

@@ -106,7 +106,7 @@ const CharacterFilterMenu: React.FC<FilterMenuProps> = ({onFilterChange}) => {
                 <div className="flex flex-row flex-wrap justify-around gap-5">
                     <button
                         type="submit"
-                        className="bg-amber-500 hover:bg-amber-600 text-white font-medium rounded-full py-2 w-full transition duration-300"
+                        className="bg-[#436850] hover:bg-amber-600 text-white font-medium rounded-full py-2 w-full transition duration-300"
                         onClick={handleButtonPress}>
                         Apply
                     </button>

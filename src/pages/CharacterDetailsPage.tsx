@@ -1,11 +1,32 @@
-import type {Character} from "../utils/types.ts";
-
-import {Link, useLocation} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {Title} from "../components/title.tsx";
+import {useQuery} from "@tanstack/react-query";
+import {getCharacterByID} from "../utils/api.ts";
+import NotFoundPage from "./NotFoundPage.tsx";
 
 export function CharacterDetailsPage() {
-    const location = useLocation()
-    const character: Character = location.state || {}
+    const {id: characterId} = useParams();
+    const id = Number(characterId);
+
+    const {
+        isLoading: isLoadingCharacter,
+        isError: isErrorCharacter,
+        data: character,
+        error: characterError
+    } = useQuery({
+        queryKey: ['character', id],
+        queryFn: async () => getCharacterByID(id),
+        enabled: !!id,
+    })
+
+    if (isLoadingCharacter) {
+        return <div>Loading...</div>
+    }
+
+    if (isErrorCharacter) {
+        console.error('Error fetching data:', characterError);
+        return <NotFoundPage/>;
+    }
 
     return (
         <div className="container mx-auto p-6">
@@ -27,23 +48,41 @@ export function CharacterDetailsPage() {
                 </div>
                 <div className="mt-6 space-y-2">
                     <div>
-                        <span className="font-semibold">Location Name:</span>
-                        <Link className={'text-blue-500 hover:underline'}
-                              to={`/location/${character?.location.url.split('/').pop()}`}> {character?.location?.name}</Link>
+                        <span className="font-semibold">Location: </span>
+                        {
+                            character?.location?.name === 'unknown' &&
+                            <span className="text-black">{character?.location?.name}</span>
+                        }
+                        {
+                            character?.location?.name !== 'unknown' &&
+                            <Link className={'text-blue-500 hover:underline'}
+                                  to={`/location/${character?.location.url.split('/').pop()}`}
+                                  state={character?.location.url.split('/').pop()}
+                            > {character?.location?.name}</Link>
+                        }
                     </div>
-                    <div>
-                        <span className="font-semibold">Origin Name:</span>
+                    <span className="font-semibold">Origin: </span>
+                    {
+                        character?.origin?.name === 'unknown' &&
+                        <span className={'text-black '}>
+                                {character?.origin?.name}</span>
+                    }
+                    {
+                        character?.origin?.name !== 'unknown' &&
                         <Link className={'text-blue-500 hover:underline'}
-                              to={`/location/${character?.origin.url.split('/').pop()}`}> {character?.origin?.name}</Link>
-                    </div>
+                              to={`/location/${character?.origin.url.split('/').pop()}`}
+                              state={character?.origin.url.split('/').pop()}> {character?.origin?.name}</Link>
+                    }
                 </div>
                 <div className="mt-6">
                     <h2 className="text-xl font-semibold mb-2">Episodes:</h2>
                     <div className={'grid grid-cols-2 space-y-1 justify-start'}>
-                        {character?.episode.map((item, index) => {
+                        {character?.episode?.map((item, index) => {
                             const episode = item.split('/').pop()
                             return <Link className={'hover:underline'} key={index}
-                                         to={`/episode/${episode}`}>episode {episode}</Link>
+                                         to={`/episode/${episode}`}
+                                         state={episode}
+                            >episode {episode}</Link>
                         })}
                     </div>
                 </div>

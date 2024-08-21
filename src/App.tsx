@@ -1,6 +1,5 @@
 import {useEffect, useState} from 'react'
 import './App.css'
-import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {Title} from "./components/title.tsx";
 import type {Character, CharacterFilter, Episode, EpisodeFilter, Location, LocationFilter} from "./utils/types.ts";
 import {getData} from "./utils/api.ts";
@@ -9,7 +8,6 @@ import "slick-carousel/slick/slick-theme.css";
 import DataCarrousel from "./components/DataCarrousel.tsx";
 import {NavBar} from "./components/NavBar.tsx";
 
-const queryClient = new QueryClient()
 
 
 function App() {
@@ -41,7 +39,6 @@ function App() {
 
 
     return (
-        <QueryClientProvider client={queryClient}>
             <div>
                 <div className={'sticky top-0 z-50'}>
                     <NavBar></NavBar>
@@ -49,7 +46,6 @@ function App() {
                 <Title title={"Rick and Morty API"}></Title>
                 <DataCarrousel characters={characters} locations={locations} episodes={episodes}></DataCarrousel>
             </div>
-        </QueryClientProvider>
     )
 }
 

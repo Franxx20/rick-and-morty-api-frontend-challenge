@@ -11,6 +11,9 @@ import {CharacterDetailsPage} from "./pages/CharacterDetailsPage.tsx";
 import {EpisodeDetailsPage} from "./pages/EpisodeDetailsPage.tsx";
 import {LocationDetailsPage} from "./pages/LocationDetailsPage.tsx";
 import {SearchResultsPage} from "./pages/SearchResultsPage.tsx";
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+
+const queryClient = new QueryClient({})
 
 const router = createBrowserRouter([
     {
@@ -55,7 +58,9 @@ const router = createBrowserRouter([
 ])
 
 createRoot(document.getElementById('root')!).render(
-    <StrictMode>
-        <RouterProvider router={router}/>
-    </StrictMode>,
+    <QueryClientProvider client={queryClient}>
+        <StrictMode>
+            <RouterProvider router={router}/>
+        </StrictMode>,
+    </QueryClientProvider>
 )
