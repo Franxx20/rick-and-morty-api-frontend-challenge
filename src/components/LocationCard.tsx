@@ -1,13 +1,14 @@
 import type {Location} from "../utils/types.ts";
 import {Link} from "react-router-dom";
 import React from "react"; // Adjust the import path if needed
+import portal from '../../public/Rick-And-Morty-Portal.png'
 
 type LocationCardProp = {
     data: Location;
 }
 
 
-const LocationCard: React.FC<LocationCardProp> = ({ data }) => {
+const LocationCard: React.FC<LocationCardProp> = ({data}) => {
     return (
         <Link
             key={data.id}
@@ -17,7 +18,7 @@ const LocationCard: React.FC<LocationCardProp> = ({ data }) => {
         >
             <div className="relative w-full h-full flex justify-center items-center overflow-hidden rounded-full">
                 <img
-                    src={"./public/Rick-And-Morty-Portal.png"}
+                    src={portal}
                     alt={data.name}
                     className="rounded-full transition-transform duration-300 hover:scale-110"
                 />

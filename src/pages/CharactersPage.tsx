@@ -7,6 +7,7 @@ import CharacterFilterMenu from "../components/CharacterFilterMenu.tsx";
 import NotFoundPage from "./NotFoundPage.tsx";
 import {NavBar} from "../components/NavBar.tsx";
 import Modal from 'react-modal';
+import filterIcon from '../../public/filter-32.svg'
 
 export function CharactersPage() {
     const [characters, setCharacters] = useState<Character[]>([]);
@@ -89,7 +90,7 @@ export function CharactersPage() {
                 onClick={toggleFilterMenu}
                 className={'cursor-pointer hover:bg-gray-400 rounded-xl flex items-center justify-center'}>
                 <img
-                    src={'public/filter-32.svg'}
+                    src={filterIcon}
                     alt={'Filter Icon'}
                     className={'h-10 w-10'}
                 />
