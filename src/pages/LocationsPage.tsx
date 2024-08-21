@@ -71,10 +71,11 @@ export function LocationsPage() {
             </div>
             <Title title={"Locations"}/>
 
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 py-10 md:py-20 gap-4'>
+            <div
+                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 py-10 md:py-20 mx-auto max-w-screen-lg justify-items-center lg:justify-items-stretch">
                 {
                     locations.map((location) => (
-                        <div key={location.id} className='mb-4 break-inside-avoid'>
+                        <div key={location.id} className='mb-10 break-inside-avoid'>
                             <LocationCard data={location}/>
                         </div>
                     ))

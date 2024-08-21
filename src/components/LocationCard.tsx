@@ -14,13 +14,13 @@ const LocationCard: React.FC<LocationCardProp> = ({data}) => {
             key={data.id}
             to={`/location/${data.id}`}
             state={data}
-            className="relative rounded-full hover:shadow-lg transition duration-300"
+            className="relative block rounded-xl overflow-hidden transition duration-300 hover:scale-110"
         >
-            <div className="relative w-full h-full flex justify-center items-center overflow-hidden rounded-full">
+            <div className="relative flex justify-center items-center overflow-hidden rounded-full">
                 <img
                     src={portal}
                     alt={data.name}
-                    className="rounded-full transition-transform duration-300 hover:scale-110"
+                    className="rounded-full h-full w-full transition-transform duration-300 hover:scale-110"
                 />
                 <p className="absolute w-2/5 text-xl text-center font-bold text-pretty rounded-full text-shadow ">
                     {data.name}

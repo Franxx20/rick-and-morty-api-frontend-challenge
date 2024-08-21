@@ -106,7 +106,7 @@ export function CharactersPage() {
             </Modal>
 
             <div
-                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 py-10 md:py-20 mx-auto max-w-screen-lg justify-items-center lg:justify-items-stretch">
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 py-10 md:py-20 mx-auto max-w-screen-lg justify-items-center sm:justify-items-stretch">
                 {characters.map((character) => (
                     <div key={character.id} className="mb-10 break-inside-avoid">
                         <CharacterCard data={character}/>

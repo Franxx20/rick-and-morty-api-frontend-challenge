@@ -59,7 +59,8 @@ export function LocationDetailsPage() {
 
                 <h2 className="text-xl font-semibold mt-4">Residents:</h2>
 
-                <div className="columns-1 sm:columns-2 lg:columns-3 md:py-20 gap-4">
+                <div
+                    className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 py-10 md:py-20 mx-auto max-w-screen-lg justify-items-center">
                     {characters && characters.length > 0 &&
                         characters.map((character) => (
                             <div key={character.id} className="mb-4 break-inside-avoid">
