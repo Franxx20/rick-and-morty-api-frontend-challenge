@@ -6,24 +6,24 @@ type CharacterCardProp = {
     data: Character;
 }
 
-const CharacterCard: React.FC<CharacterCardProp> = ({data}) => {
+const CharacterCard: React.FC<CharacterCardProp> = ({ data }) => {
     return (
-        <div className="bg-amber-400 text-black rounded-xl">
-            <div className="h-56 rounded-t-xl bg-indigo-500 flex justify-center items-center">
-                <img src={data.image} alt={data.name} className="h-44 w-44 rounded"/>
+        <Link
+            key={data.id}
+            to={`/character/${data.id}`}
+            state={data}
+            className="relative block h-64 w-64 rounded-full overflow-hidden shadow-lg  transition duration-300 hover:scale-110"
+        >
+            <img
+                src={data.image}
+                alt={data.name}
+                className="w-full h-full object-cover rounded-full"
+            />
+            <div
+                className="absolute h-[95px] w-[200px] bottom-0 left-7 right-0 bg-black/70 text-white text-pretty text-center p-2 rounded-full">
+                <p className="text-lg font-semibold">{data.name}</p>
             </div>
-
-            <div className='flex flex-col justify-center items-center gap-4 p-4'>
-                <p className="text-xl font-semibold whitespace-nowrap overflow-hidden text-ellipsis"
-                   style={{fontSize: 'calc(1.25rem - 0.1vw)'}}>
-                    {data.name}</p>
-
-                <p>{data.status}</p>
-                <button className="bg-indigo-500 text-white text-lg px-6 py-1 rounded-xl">
-                    <Link key={data.id} to={`/character/${data.id}`} state={data}>View More</Link>
-                </button>
-            </div>
-        </div>
+        </Link>
     );
 };
 

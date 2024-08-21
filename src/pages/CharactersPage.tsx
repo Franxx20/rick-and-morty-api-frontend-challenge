@@ -105,9 +105,10 @@ export function CharactersPage() {
                 <CharacterFilterMenu onFilterChange={onFilterChange}/>
             </Modal>
 
-            <div className="columns-1 sm:columns-2 lg:columns-3 py-10 md:py-20 gap-4">
+            <div
+                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 py-10 md:py-20 mx-auto max-w-screen-lg justify-items-center lg:justify-items-stretch">
                 {characters.map((character) => (
-                    <div key={character.id} className="mb-4 break-inside-avoid">
+                    <div key={character.id} className="mb-10 break-inside-avoid">
                         <CharacterCard data={character}/>
                     </div>
                 ))}
