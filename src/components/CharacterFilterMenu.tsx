@@ -1,5 +1,5 @@
 import type {CharacterFilter, CharacterGender, CharacterStatus} from "../utils/types.ts";
-import React, {useReducer} from "react";
+import React, {useReducer, useRef} from "react";
 
 
 type FilterAction =
@@ -29,6 +29,7 @@ const characterStatus: CharacterStatus[] = ['Alive', 'Dead', 'unknown'];
 
 const CharacterFilterMenu: React.FC<FilterMenuProps> = ({onFilterChange}) => {
     const [filters, dispatch] = useReducer(filterReducer, {});
+    const formRef = useRef<HTMLFormElement>(null)
 
     const handleButtonPress = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
@@ -46,12 +47,24 @@ const CharacterFilterMenu: React.FC<FilterMenuProps> = ({onFilterChange}) => {
     const handleReset = () => {
         dispatch({type: 'RESET'});
         onFilterChange({});
+
+        if(formRef.current){
+            formRef.current.reset();
+        }
     };
 
     return (
-        <div className="p-4 bg-white rounded-xl shadow w-1/3">
-            <h3 className="text-lg font-semibold mb-3">Filter Characters</h3>
-            <form className="flex flex-col space-y-4">
+        <div className="p-4 bg-white rounded-xl shadow">
+            <div className={'flex flex-row flex-wrap justify-between mb-3'}>
+                <h3 className="text-lg font-semibold ">Filter Characters</h3>
+                <button
+                    type="reset"
+                    className="hover:underline text-gray-800 font-medium rounded-full w-1/6 transition duration-300 ml-auto mr-6 sm:mr-0 md:mr-0 lg:mr-0 "
+                    onClick={handleReset}>
+                    Clear
+                </button>
+            </div>
+            <form ref={formRef} className="flex flex-col space-y-4">
                 <div>
                     <h2 className="text-md font-medium mb-2">Gender</h2>
                     <div className="flex flex-col space-y-1">
@@ -90,18 +103,12 @@ const CharacterFilterMenu: React.FC<FilterMenuProps> = ({onFilterChange}) => {
                     </div>
                 </div>
 
-                <div className="flex justify-around w-full gap-5">
+                <div className="flex flex-row flex-wrap justify-around gap-5">
                     <button
                         type="submit"
-                        className="bg-amber-500 hover:bg-amber-600 text-white font-medium rounded-full py-2 px-4 w-full transition duration-300"
+                        className="bg-amber-500 hover:bg-amber-600 text-white font-medium rounded-full py-2 w-full transition duration-300"
                         onClick={handleButtonPress}>
                         Apply
-                    </button>
-                    <button
-                        type="reset"
-                        className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium rounded-full py-2 px-4 w-full transition duration-300"
-                        onClick={handleReset}>
-                        Clear
                     </button>
                 </div>
             </form>

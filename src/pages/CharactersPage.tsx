@@ -11,11 +11,12 @@ import Modal from 'react-modal';
 export function CharactersPage() {
     const [characters, setCharacters] = useState<Character[]>([]);
     const [filters, setFilters] = useState<CharacterFilter>({});
+
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [showFilterMenu, setShowFilterMenu] = useState(false);
     const [page, setPage] = useState<number>(1);
-    const [hasMore, setHasMore] = useState<boolean>(true);  // New state to track if more pages are available
+    const [hasMore, setHasMore] = useState<boolean>(true);
 
     const toggleFilterMenu = () => {
         setShowFilterMenu(!showFilterMenu);
@@ -30,7 +31,6 @@ export function CharactersPage() {
                     for (const character of previous) {
                         auxMap.set(character.id, character)
                     }
-
                     if (result.results)
                         for (const character of result.results as Character[]) {
                             if (!auxMap.has(character.id))
@@ -47,6 +47,7 @@ export function CharactersPage() {
             setIsLoading(false);
         }
     };
+
 
     useEffect(() => {
         if (hasMore) {
@@ -68,9 +69,9 @@ export function CharactersPage() {
 
     const onFilterChange = (newFilters: CharacterFilter) => {
         setFilters(newFilters);
-        setCharacters([]);  // Clear characters list on new filter change
-        setPage(1);  // Reset to first page on new filter change
-        setHasMore(true);  // Reset hasMore when filters change
+        setCharacters([]);
+        setPage(1);
+        setHasMore(true);
     };
 
     if (error) {
@@ -83,17 +84,22 @@ export function CharactersPage() {
                 <NavBar/>
             </div>
             <Title title={"Characters"}/>
-            <img
-                src={'src/assets/filter-32.svg'}
-                alt={'../assets/filter-icon.jpg'}
+
+            <button
                 onClick={toggleFilterMenu}
-                className={'h-10 cursor-pointer'}/>
+                className={'cursor-pointer hover:bg-gray-400 rounded-xl flex items-center justify-center'}>
+                <img
+                    src={'src/assets/filter-32.svg'}
+                    alt={'Filter Icon'}
+                    className={'h-10 w-10'}
+                />
+            </button>
 
             <Modal
                 isOpen={showFilterMenu}
                 onRequestClose={toggleFilterMenu}
                 contentLabel="Character Filter Menu"
-                className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-lg shadow-md p-4 max-w-full w-auto sm:w-3/4 lg:w-1/2 max-h-full z-50"
+                className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-lg shadow-lg sm:w-3/4 lg:w-1/2 z-50"
                 overlayClassName="fixed inset-0 bg-black bg-opacity-50 z-40">
                 <CharacterFilterMenu onFilterChange={onFilterChange}/>
             </Modal>

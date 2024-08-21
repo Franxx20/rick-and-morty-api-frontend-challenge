@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { HiSearch } from 'react-icons/hi';  // Importing an icon from react-icons
+import React, {useState} from "react";
+import {useNavigate} from "react-router-dom";
+import {HiSearch} from 'react-icons/hi';  // Importing an icon from react-icons
 
-export function SearchBar({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) {
+export function SearchBar({isOpen, onClose}: { isOpen: boolean, onClose: () => void }) {
     const [searchValue, setSearchValue] = useState('');
     const navigate = useNavigate();
 
@@ -19,7 +19,7 @@ export function SearchBar({ isOpen, onClose }: { isOpen: boolean, onClose: () =>
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
             <div className="bg-white rounded-lg p-8 w-full max-w-md">
                 <div className="relative flex items-center">
-                    <HiSearch className="absolute left-3 text-gray-400 text-lg" />  {/* Icon positioned on the left */}
+                    <HiSearch className="absolute left-3 text-gray-400 text-lg"/>
                     <input
                         className="bg-gray-100 w-full h-10 pl-10 pr-5 rounded-full text-sm focus:outline-none"
                         value={searchValue}
@@ -27,13 +27,11 @@ export function SearchBar({ isOpen, onClose }: { isOpen: boolean, onClose: () =>
                         name="search"
                         placeholder="Search..."
                         onChange={(e) => setSearchValue(e.target.value)}
-                        onKeyDown={handleKeyDown}
-                    />
+                        onKeyDown={handleKeyDown}/>
                 </div>
                 <button
                     className="mt-4 px-4 py-2 bg-indigo-500 text-white rounded"
-                    onClick={onClose}
-                >
+                    onClick={onClose}>
                     Close
                 </button>
             </div>

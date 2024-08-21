@@ -10,7 +10,6 @@ import CharacterCard from "../components/CharacterCard.tsx";
 export function LocationDetailsPage() {
     const locationObject = useLocation()
     const location: Location = locationObject.state || {}
-    const characterIds: number[] = location.residents.map((character) => Number(character.split('/').pop()))
     const [characters, setCharacters] = useState<Character[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -18,6 +17,7 @@ export function LocationDetailsPage() {
     const fetchCharacters = useCallback(async () => {
         setIsLoading(true)
         try {
+            const characterIds: number[] = location.residents.map((character) => Number(character.split('/').pop()))
             const result: Character[] = await getCharactersByID(characterIds) as Character[]
             setCharacters(result)
             console.log(result.length)
