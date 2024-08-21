@@ -17,7 +17,7 @@ const LocationCard: React.FC<LocationCardProp> = ({ data }) => {
         >
             <div className="relative w-full h-full flex justify-center items-center overflow-hidden rounded-full">
                 <img
-                    src={"src/assets/Rick-And-Morty-Portal.png"}
+                    src={"public/Rick-And-Morty-Portal.png"}
                     alt={data.name}
                     className="rounded-full transition-transform duration-300 hover:scale-110"
                 />

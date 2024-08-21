@@ -10,7 +10,7 @@ const EpisodeCard: React.FC<EpisodeCardProp> = ({data}) => {
     return (
         <div className="bg-amber-400 text-black rounded-xl">
             <div className="h-56 rounded-t-xl bg-indigo-500 flex justify-center items-center">
-                <img src={"src/assets/Rick_and_Morty_season_2.png"} alt={data.name} className="h-44 w-44 rounded" />
+                <img src={"public/Rick_and_Morty_season_2.png"} alt={data.name} className="h-44 w-44 rounded" />
             </div>
 
             <div className='flex flex-col justify-center items-center gap-4 p-4'>

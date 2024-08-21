@@ -89,7 +89,7 @@ export function CharactersPage() {
                 onClick={toggleFilterMenu}
                 className={'cursor-pointer hover:bg-gray-400 rounded-xl flex items-center justify-center'}>
                 <img
-                    src={'src/assets/filter-32.svg'}
+                    src={'public/filter-32.svg'}
                     alt={'Filter Icon'}
                     className={'h-10 w-10'}
                 />
