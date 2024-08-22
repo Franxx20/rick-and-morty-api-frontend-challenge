@@ -68,10 +68,10 @@ export function EpisodesPage() {
                 <NavBar></NavBar>
             </div>
             <Title title={"Episodes"}/>
-
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 py-10 md:py-20 gap-4'>
+            <div
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 py-10 md:py-20 mx-auto max-w-screen-lg justify-items-center sm:justify-items-stretch gap-10">
                 {episodes.map((episode) => (
-                    <div key={episode.id} className='mb-4 break-inside-avoid'>
+                    <div key={episode.id} className="flex items-center justify-center">
                         <EpisodeCard data={episode}/>
                     </div>
                 ))}

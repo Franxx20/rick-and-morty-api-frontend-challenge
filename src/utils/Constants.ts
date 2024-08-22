@@ -6,6 +6,8 @@ export const CARROUSEL_SETTINGS = {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
+    centerMode: true,
+    draggable: true,
     responsive: [
         {
             breakpoint: 1024,
@@ -20,14 +22,15 @@ export const CARROUSEL_SETTINGS = {
             settings: {
                 slidesToShow: 2,
                 slidesToScroll: 2,
-                initialSlide: 2
+                infinite: true,
             }
         },
         {
             breakpoint: 480,
             settings: {
                 slidesToShow: 1,
-                slidesToScroll: 1
+                slidesToScroll: 1,
+                infinite: true,
             }
         }
     ]

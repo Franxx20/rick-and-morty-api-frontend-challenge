@@ -86,15 +86,17 @@ export function CharactersPage() {
             </div>
             <Title title={"Characters"}/>
 
-            <button
-                onClick={toggleFilterMenu}
-                className={'cursor-pointer hover:bg-gray-400 rounded-xl flex items-center justify-center'}>
-                <img
-                    src={filterIcon}
-                    alt={'Filter Icon'}
-                    className={'h-10 w-10'}
-                />
-            </button>
+            <div className={'flex flex-row justify-end'}>
+                <button
+                    onClick={toggleFilterMenu}
+                    className={'cursor-pointer hover:bg-gray-400 rounded-xl'}>
+                    <img
+                        src={filterIcon}
+                        alt={'Filter Icon'}
+                        className={'h-10 w-10'}
+                    />
+                </button>
+            </div>
 
             <Modal
                 isOpen={showFilterMenu}
@@ -108,7 +110,7 @@ export function CharactersPage() {
             <div
                 className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 py-10 md:py-20 mx-auto max-w-screen-lg justify-items-center sm:justify-items-stretch gap-10">
                 {characters.map((character) => (
-                    <div key={character.id} className="break-inside-avoid flex items-center justify-center">
+                    <div key={character.id} className="flex items-center justify-center">
                         <CharacterCard data={character}/>
                     </div>
                 ))}

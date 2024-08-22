@@ -5,26 +5,26 @@ import {CardCarrousel} from "./CardCarrousel.tsx";
 import characterCard from "./CharacterCard.tsx";
 
 type DataCarrouselsProps = {
-    characters: Character[]; // Adjust 'any' to your actual character data type
-    locations: Location[];  // Adjust 'any' to your actual location data type
-    episodes: Episode[];   // Adjust 'any' to your actual episode data type
+    characters: Character[];
+    locations: Location[];
+    episodes: Episode[];
 }
 
 function DataCarrousels({characters, locations, episodes}: DataCarrouselsProps) {
     return (
-        <div>
-            {characters?.length > 0 && (
+        <div className={'flex flex-col'}>
+            <div>{characters?.length > 0 && (
                 <CardCarrousel CardComponent={characterCard} data={characters} endpoint={'characters'}
                                title={'Characters'}></CardCarrousel>
-            )}
-            {locations?.length > 0 && (
+            )}</div>
+            <div>{locations?.length > 0 && (
                 <CardCarrousel CardComponent={LocationCard} data={locations} endpoint={'locations'}
                                title={'Locations'}></CardCarrousel>
-            )}
-            {episodes?.length > 0 && (
+            )}</div>
+            <div>{episodes?.length > 0 && (
                 <CardCarrousel CardComponent={EpisodeCard} data={episodes} endpoint={'episodes'}
-                                                            title={'Episodes'}></CardCarrousel>
-            )}
+                               title={'Episodes'}></CardCarrousel>
+            )}</div>
         </div>
     );
 };

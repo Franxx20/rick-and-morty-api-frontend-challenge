@@ -47,11 +47,12 @@ export function EpisodeDetailsPage() {
     }
 
     return (
-        <div className="container mx-auto">
-            <div className="sticky top-0 z-50 mb-4">
+        <div>
+            <div className="sticky top-0 z-50 mb-6">
                 <NavBar/>
             </div>
-            <div className="bg-white shadow-lg rounded-lg p-6">
+
+            <div className="mx-auto container bg-[#FBFADA] shadow-lg rounded-lg p-6">
                 <Title title={'Episode Details'}></Title>
                 <div className="space-y-4 text-lg">
                     <div><span className="font-semibold">ID:</span> {episode?.id}</div>

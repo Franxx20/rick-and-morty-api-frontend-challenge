@@ -3,6 +3,7 @@ import {Title} from "../components/title.tsx";
 import {useQuery} from "@tanstack/react-query";
 import {getCharacterByID} from "../utils/api.ts";
 import NotFoundPage from "./NotFoundPage.tsx";
+import {NavBar} from "../components/NavBar.tsx";
 
 export function CharacterDetailsPage() {
     const {id: characterId} = useParams();
@@ -29,9 +30,12 @@ export function CharacterDetailsPage() {
     }
 
     return (
-        <div className="container mx-auto p-6">
+        <div>
+            <div className="sticky top-0 z-50 mb-6">
+                <NavBar/>
+            </div>
 
-            <div className="bg-white shadow-lg rounded-lg p-6">
+            <div className="mx-auto container bg-[#FBFADA] shadow-lg rounded-lg p-6">
                 <Title title={'Character Details'}></Title>
                 <div className="flex flex-col lg:flex-row items-center lg:items-start">
                     <img src={character?.image} alt={character?.name}

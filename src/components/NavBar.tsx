@@ -8,7 +8,7 @@ export function NavBar() {
     const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
 
     return (
-        <nav className="navbar bg-white rounded-xl">
+        <nav className="navbar bg-[#FBFADA] rounded-xl">
             <ul className="w-full flex items-center justify-between ">
                 <li className="sm:hidden flex items-center">
                     <button onClick={() => setMenuOpen(!menuOpen)}>
@@ -16,14 +16,14 @@ export function NavBar() {
                     </button>
                 </li>
 
-                <li className="hidden sm:flex space-x-4 h-full">
-                    <Link className="h-full p-4 flex items-center text-black hover:bg-gray-400 hover:rounded-xl"
+                <li className="sm:flex hidden space-x-4 h-full">
+                    <Link className="h-fit p-4 flex items-center text-black hover:bg-gray-400 hover:rounded-xl"
                           to="/">Home</Link>
-                    <Link className="h-full p-4 flex items-center text-black hover:bg-gray-400 hover:rounded-xl"
+                    <Link className="h-fit p-4 flex items-center text-black hover:bg-gray-400 hover:rounded-xl"
                           to="/characters">Characters</Link>
-                    <Link className="h-full p-4 flex items-center text-black hover:bg-gray-400 hover:rounded-xl"
+                    <Link className="h-fit p-4 flex items-center text-black hover:bg-gray-400 hover:rounded-xl"
                           to="/locations">Locations</Link>
-                    <Link className="h-full p-4 flex items-center text-black hover:bg-gray-400 hover:rounded-xl"
+                    <Link className="h-fit p-4 flex items-center text-black hover:bg-gray-400 hover:rounded-xl"
                           to="/episodes">Episodes</Link>
                 </li>
 
@@ -35,6 +35,7 @@ export function NavBar() {
                         Search
                     </button>
                 </li>
+
             </ul>
 
             <div
