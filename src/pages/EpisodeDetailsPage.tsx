@@ -1,6 +1,6 @@
 import {useParams} from "react-router-dom";
 import {Title} from "../components/title.tsx";
-import CharacterCard from "../components/CharacterCard.tsx";
+import {CharacterCard} from "../components/CharacterCard.tsx";
 import {getCharactersByID, getEpisodeByID} from "../utils/api.ts";
 import {NavBar} from "../components/NavBar.tsx";
 import NotFoundPage from "./NotFoundPage.tsx";
@@ -15,7 +15,12 @@ export function EpisodeDetailsPage() {
         queryFn: () => getEpisodeByID(id),
         enabled: !!id,
     })
-    const {isLoading: isLoadingCharacters, isError: isErrorCharacters, data: characters, error: charactersError} = useQuery({
+    const {
+        isLoading: isLoadingCharacters,
+        isError: isErrorCharacters,
+        data: characters,
+        error: charactersError
+    } = useQuery({
         queryKey: ['characters', episode?.characters],
         queryFn: async () => {
             if (episode) {
@@ -73,7 +78,8 @@ export function EpisodeDetailsPage() {
                     <h2 className="text-xl font-semibold mt-4">Characters:</h2>
 
                     {characters && characters.length > 0 ? (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 place-content-center m-auto">
+                        <div
+                            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 place-content-center m-auto">
                             {characters.map((character) => (
                                 <CharacterCard key={character.id} data={character}/>
                             ))}

@@ -21,8 +21,7 @@ export const CardCarrousel = <T extends Character | Location | Episode>({
                 </Link>
             </div>
             <div className={'flex justify-center'}>
-                <Slider {...CARROUSEL_SETTINGS}
-                        className={"w-full max-w-screen-lg"}>
+                <Slider {...CARROUSEL_SETTINGS} className={"w-full max-w-screen-lg"}>
                     {data.map((element) => (
                         <CardComponent key={element.id} data={element}/>
                     ))}

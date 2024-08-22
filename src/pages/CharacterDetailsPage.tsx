@@ -121,8 +121,7 @@ export function CharacterDetailsPage() {
                                     return <Link key={index}
                                                  to={`/episode/${episode}`}
                                                  state={episode}
-                                                 className="bg-gray-100 hover:bg-gray-200 text-gray-800 py-2 px-4 rounded inline-block"
-                                    >
+                                                 className="bg-gray-100 hover:bg-gray-200 text-gray-800 py-2 px-4 rounded inline-block">
                                         Episode {episode}
                                     </Link>
                                 })}

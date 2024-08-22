@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {HiSearch} from 'react-icons/hi';  // Importing an icon from react-icons
+import {HiSearch} from 'react-icons/hi'; // Importing an icon from react-icons
 
 export function SearchBar({isOpen, onClose}: { isOpen: boolean, onClose: () => void }) {
     const [searchValue, setSearchValue] = useState('');

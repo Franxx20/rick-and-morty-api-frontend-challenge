@@ -114,7 +114,7 @@ export const getCharactersByID = async (ids: number[]): Promise<Character[]> => 
     try {
         const response = await axios.get(query);
         console.log(response);
-        if(ids.length === 1){
+        if (ids.length === 1) {
             const character = response.data
             return [character]
         }

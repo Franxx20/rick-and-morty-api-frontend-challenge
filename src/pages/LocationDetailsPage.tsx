@@ -3,7 +3,7 @@ import {Title} from "../components/title.tsx";
 import {NavBar} from "../components/NavBar.tsx";
 import {getCharactersByID, getLocationByID} from "../utils/api.ts";
 import NotFoundPage from "./NotFoundPage.tsx";
-import CharacterCard from "../components/CharacterCard.tsx";
+import {CharacterCard} from "../components/CharacterCard.tsx";
 import {useQuery} from "@tanstack/react-query";
 
 export function LocationDetailsPage() {
@@ -16,7 +16,12 @@ export function LocationDetailsPage() {
         enabled: !!id,
     })
 
-    const {isLoading: isLoadingCharacters, isError: isErrorCharacters, data: characters, error: charactersError} = useQuery({
+    const {
+        isLoading: isLoadingCharacters,
+        isError: isErrorCharacters,
+        data: characters,
+        error: charactersError
+    } = useQuery({
         queryKey: ['characters', location?.residents],
         queryFn: async () => {
             if (location) {
@@ -49,7 +54,7 @@ export function LocationDetailsPage() {
             </div>
 
             <div className="container mx-auto bg-white shadow-lg rounded-lg p-8">
-                <Title title={'Location Details'} />
+                <Title title={'Location Details'}/>
                 <div className="flex flex-col space-y-4">
                     <div className="flex flex-col space-y-2">
                         <div className="flex items-center">
@@ -74,7 +79,7 @@ export function LocationDetailsPage() {
                         </div>
                     </div>
 
-                    <h2 className="text-xl font-semibold mt-4">Residents:</h2>
+                    <h2 className="text-xl font-semibold text-center mt-4 ">Residents:</h2>
                     {characters && characters.length > 0 ? (
                         <div
                             className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">

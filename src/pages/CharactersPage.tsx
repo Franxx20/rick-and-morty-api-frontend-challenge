@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {Title} from "../components/title.tsx";
 import type {Character, CharacterFilter, Info} from "../utils/types.ts";
 import {getData} from "../utils/api.ts";
-import CharacterCard from "../components/CharacterCard.tsx";
+import {CharacterCard} from "../components/CharacterCard.tsx";
 import CharacterFilterMenu from "../components/CharacterFilterMenu.tsx";
 import NotFoundPage from "./NotFoundPage.tsx";
 import {NavBar} from "../components/NavBar.tsx";

@@ -48,7 +48,7 @@ const CharacterFilterMenu: React.FC<FilterMenuProps> = ({onFilterChange}) => {
         dispatch({type: 'RESET'});
         onFilterChange({});
 
-        if(formRef.current){
+        if (formRef.current) {
             formRef.current.reset();
         }
     };

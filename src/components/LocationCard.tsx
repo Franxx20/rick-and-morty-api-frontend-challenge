@@ -8,14 +8,14 @@ type LocationCardProp = {
 }
 
 
-const LocationCard: React.FC<LocationCardProp> = ({ data }) => {
+const LocationCard: React.FC<LocationCardProp> = ({data}) => {
     return (
         <Link
             key={data.id}
             to={`/location/${data.id}`}
             state={data}
             className="relative block bg-green rounded-full overflow-hidden transition duration-300 hover:scale-110"
-            style={{ width: '25vw', height: '25vw', maxWidth: '14rem', maxHeight: '14rem' }}
+            style={{width: '25vw', height: '25vw', maxWidth: '14rem', maxHeight: '14rem'}}
         >
             <img
                 src={portal}
@@ -30,7 +30,6 @@ const LocationCard: React.FC<LocationCardProp> = ({ data }) => {
         </Link>
     );
 };
-
 
 
 export default LocationCard;
