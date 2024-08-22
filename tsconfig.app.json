@@ -24,9 +24,19 @@
     /* my configs*/
     "esModuleInterop": true,
     "verbatimModuleSyntax": true,
-    "noUncheckedIndexedAccess": true
+    "noUncheckedIndexedAccess": true,
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
   },
+  //  "include": [
+  //    "src"
+  //  ],
   "include": [
-    "src"
+    "src",
+    "**/*.ts",
+    "**/*.tsx"
   ]
 }

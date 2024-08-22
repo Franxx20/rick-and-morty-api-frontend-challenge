@@ -45,7 +45,7 @@ export function CharacterDetailsPage() {
                 <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8">
                     <div className="lg:w-1/3">
                         <img src={character?.image} alt={character?.name}
-                             className="w-full h-auto rounded-full shadow-lg"/>
+                             className="w-full h-auto rounded-3xl shadow-lg"/>
                     </div>
                     <div className="lg:w-2/3 space-y-4">
                         <div className="flex flex-col space-y-2">

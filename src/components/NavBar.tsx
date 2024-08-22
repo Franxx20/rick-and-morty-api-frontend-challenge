@@ -7,30 +7,39 @@ export function NavBar() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
 
+    const toggleSearchBar = () => {
+        setIsSearchModalOpen(!isSearchModalOpen)
+    }
+
     return (
-        <nav className="navbar bg-[#FBFADA] rounded-xl">
+        <nav className="navbar bg-[#ECDFCC] rounded-b-xl">
             <ul className="w-full flex items-center justify-between ">
-                <li className="sm:hidden flex items-center">
+
+                <li className="sm:hidden flex items-center px-4">
                     <button onClick={() => setMenuOpen(!menuOpen)}>
                         <HiMenu className="text-black text-3xl"/>
                     </button>
                 </li>
 
                 <li className="sm:flex hidden space-x-4 h-full">
-                    <Link className="h-fit p-4 flex items-center text-black hover:bg-gray-400 hover:rounded-xl"
-                          to="/">Home</Link>
-                    <Link className="h-fit p-4 flex items-center text-black hover:bg-gray-400 hover:rounded-xl"
-                          to="/characters">Characters</Link>
-                    <Link className="h-fit p-4 flex items-center text-black hover:bg-gray-400 hover:rounded-xl"
-                          to="/locations">Locations</Link>
-                    <Link className="h-fit p-4 flex items-center text-black hover:bg-gray-400 hover:rounded-xl"
-                          to="/episodes">Episodes</Link>
+                    <Link
+                        className="h-fit p-4 flex align-middle items-center text-black hover:bg-gray-400 rounded-xl hover:rounded-xl"
+                        to="/">Home</Link>
+                    <Link
+                        className="h-fit p-4 flex align-middle items-center text-black hover:bg-gray-400 rounded-xl hover:rounded-xl"
+                        to="/characters">Characters</Link>
+                    <Link
+                        className="h-fit p-4 flex align-middle items-center text-black hover:bg-gray-400 rounded-xl hover:rounded-xl"
+                        to="/locations">Locations</Link>
+                    <Link
+                        className="h-fit p-4 flex align-middle items-center text-black hover:bg-gray-400 rounded-xl hover:rounded-xl"
+                        to="/episodes">Episodes</Link>
                 </li>
 
                 <li className="flex-grow flex justify-end">
                     <button
                         onClick={() => setIsSearchModalOpen(true)}
-                        className="flex items-center text-black p-4 hover:bg-gray-400 hover:rounded-xl">
+                        className="flex items-center text-black p-4 hover shadow-md rounded-xl :bg-gray-400 hover:rounded-xl">
                         <HiSearch className="mr-2"/>
                         Search
                     </button>
@@ -62,7 +71,7 @@ export function NavBar() {
                 </ul>
             </div>
 
-            <SearchBar isOpen={isSearchModalOpen} onClose={() => setIsSearchModalOpen(false)}/>
+            <SearchBar isOpen={isSearchModalOpen} onClose={toggleSearchBar}/>
         </nav>
     );
 }
