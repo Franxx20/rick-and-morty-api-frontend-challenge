@@ -5,7 +5,7 @@ import {getData} from "../utils/api.ts";
 import LocationCard from "../components/LocationCard.tsx";
 import {NavBar} from "../components/NavBar.tsx";
 import NotFoundPage from "./NotFoundPage.tsx";
-import Spinner from "@/components/Spinner.tsx";
+import Spinner from "../components/Spinner.tsx";
 
 export function LocationsPage() {
     const [locations, setLocations] = useState<Location[]>([]);
