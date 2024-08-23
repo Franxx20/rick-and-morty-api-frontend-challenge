@@ -11,8 +11,8 @@ const config = {
         extend: {
             colors: {
                 background: "rgba(var(--background))",
-                navBar: "rgba(var(--nav-bar))",
-                // navBar: '#697565',
+                // navBar: "rgba(var(--nav-bar))",
+                navBar: '#697565',
             }
         },
     },

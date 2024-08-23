@@ -9,7 +9,7 @@ import DataCarrousel from "./components/DataCarrousel.tsx";
 import {NavBar} from "./components/NavBar.tsx";
 import {useQuery} from "@tanstack/react-query";
 import NotFoundPage from "./pages/NotFoundPage.tsx";
-import {useEffect} from "react";
+// import {useEffect} from "react";
 
 
 function App() {
@@ -33,26 +33,26 @@ function App() {
         queryFn: async () => await getData<Episode, EpisodeFilter>('character')
     })
 
-    useEffect(() => {
-        // NOTE: This should be set based on some kind of toggle or theme selector.
-        // I've added this here for demonstration purposes
-        localStorage.setItem("theme", "lightTheme");
-
-        // If the user has selected a theme, use that
-        const selectedTheme = localStorage.getItem("theme");
-
-        if (selectedTheme) {
-            document.body.classList.add(selectedTheme);
-
-            // Else if the users OS preferences prefers dark mode
-        } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-            document.body.classList.add("dark");
-
-            // Else use light mode
-        } else {
-            document.body.classList.add("lightTheme");
-        }
-    }, []);
+    // useEffect(() => {
+    //     // NOTE: This should be set based on some kind of toggle or theme selector.
+    //     // I've added this here for demonstration purposes
+    //     localStorage.setItem("theme", "lightTheme");
+    //
+    //     // If the user has selected a theme, use that
+    //     const selectedTheme = localStorage.getItem("theme");
+    //
+    //     if (selectedTheme) {
+    //         document.body.classList.add(selectedTheme);
+    //
+    //         // Else if the users OS preferences prefers dark mode
+    //     } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    //         document.body.classList.add("dark");
+    //
+    //         // Else use light mode
+    //     } else {
+    //         document.body.classList.add("lightTheme");
+    //     }
+    // }, []);
 
     const {
         isLoading: isLoadingLocations,
